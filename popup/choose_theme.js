@@ -47,18 +47,18 @@ function beastify(tabs) {
 * send a "reset" message to the content script in the active tab.
 */
 function reset(tabs) {
-browser.tabs.removeCSS({code: hidePage}).then(() => {
+  browser.tabs.removeCSS({code: hidePage}).then(() => {
 browser.tabs.sendMessage(tabs[0].id, {
 command: "reset",
 });
-});
+  });
 }
 
 /**
 * Just log the error to the console.
 */
 function reportError(error) {
-console.error(`Could not beastify: ${error}`);
+  console.error(`Could not beastify: ${error}`);
 }
 
 /**
@@ -66,9 +66,9 @@ console.error(`Could not beastify: ${error}`);
 * then call "beastify()" or "reset()" as appropriate.
 */
 if (e.target.classList.contains("beast")) {
-browser.tabs.query({active: true, currentWindow: true})
-.then(beastify)
-.catch(reportError);
+  browser.tabs.query({active: true, currentWindow: true})
+  .then(beastify)
+  .catch(reportError);
 }
 else if (e.target.classList.contains("reset")) {
 browser.tabs.query({active: true, currentWindow: true})
