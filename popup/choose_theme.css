@@ -1,0 +1,55 @@
+html, body {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.themeRed:hover {
+  background-color: #df1f18;
+}
+
+.themeRed {
+  background-color: #df1f1885;
+}
+
+.themeGreen:hover {
+  background-color: #5bcf25;
+}
+
+.themeGreen {
+  background-color: #5bcf2580;
+}
+
+.themeBlue:hover {
+  background-color: #2d47d4;
+}
+
+.themeBlue {
+  background-color: #2d46d480;
+}
+
+.themePurple:hover {
+  background-color: #ad1aca;
+}
+
+.themePurple {
+  background-color: #ad1aca80;
+}
+
+.reset {
+  background-color: #FBFBC9;
+}
+
+.reset:hover {
+  background-color: #EAEA9D;
+}

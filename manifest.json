@@ -1,0 +1,23 @@
+{
+
+  "manifest_version": 2,
+  "name": "Themify",
+  "version": "1.0",
+
+  "description": "Adds a browser action icon to the toolbar. Click the button to choose a theme. The active tab's theme will be changed to reflect the color chosen. See https://github.com/ossd-sp22/themify",
+  "homepage_url": "https://github.com/ossd-sp22/themify",
+  "icons": {
+    "48": "icons/themes-48.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/themes-32.png",
+    "default_title": "Themify",
+    "default_popup": "popup/choose_theme.html"
+  }
+
+}
