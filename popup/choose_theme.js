@@ -14,46 +14,43 @@ function listenForClicks() {
   document.addEventListener("click", (e) => {
 
   /**
-  * Given the name of a beast, get the URL to the corresponding image.
+  * send a "themify" message to the content script in the
+  * active tab with the relevent color.
   */
-  function beastNameToURL(beastName) {        //don't need
-    switch (beastName) {
-      case "Frog":
-        return browser.runtime.getURL("beasts/frog.jpg");
-      case "Snake":
-        return browser.runtime.getURL("beasts/snake.jpg");
-      case "Turtle":
-        return browser.runtime.getURL("beasts/turtle.jpg");
-    }
+  function redify(tabs) {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "themify",
+      color: 'red'
+    });
   }
 
-  /**
-  * Insert the page-hiding CSS into the active tab,
-  * then get the beast URL and
-  * send a "beastify" message to the content script in the active tab.
-  */
-  function beastify(tabs) {
-    document.body.style.border = "5px solid red";
-    /*
-    browser.tabs.insertCSS({code: hidePage}).then(() => {
-        let url = beastNameToURL(e.target.textContent);
-        browser.tabs.sendMessage(tabs[0].id, {
-          command: "beastify",
-          beastURL: url
-        });
-      });
-      */
-    }
+  function greenify(tabs) {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "themify",
+      color: 'green'
+    });
+  }
+
+  function blueify(tabs) {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "themify",
+      color: 'blue'
+    });
+  }
+
+  function purpleify(tabs) {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "themify",
+      color: 'purple'
+    });
+  }
 
     /**
-    * Remove the page-hiding CSS from the active tab,
     * send a "reset" message to the content script in the active tab.
     */
     function reset(tabs) {
-      browser.tabs.removeCSS({code: hidePage}).then(() => {
-browser.tabs.sendMessage(tabs[0].id, {
-command: "reset",
-});
+      browser.tabs.sendMessage(tabs[0].id, {
+        command: "reset",
       });
     }
 
@@ -61,16 +58,31 @@ command: "reset",
     * Just log the error to the console.
     */
     function reportError(error) {
-      console.error(`Could not beastify: ${error}`);
+      console.error(`Could not themify: ${error}`);
     }
 
     /**
     * Get the active tab,
-    * then call "beastify()" or "reset()" as appropriate.
+    * then call relevent "[color]ify()" or "reset()" as appropriate.
     */
     if (e.target.classList.contains("themeRed")) {
       browser.tabs.query({active: true, currentWindow: true})
-      .then(beastify)
+      .then(redify)
+      .catch(reportError);
+    }
+    else if (e.target.classList.contains("themeGreen")) {
+      browser.tabs.query({active: true, currentWindow: true})
+      .then(greenify)
+      .catch(reportError);
+    }
+    else if (e.target.classList.contains("themeBlue")) {
+      browser.tabs.query({active: true, currentWindow: true})
+      .then(blueify)
+      .catch(reportError);
+    }
+    else if (e.target.classList.contains("themePurple")) {
+      browser.tabs.query({active: true, currentWindow: true})
+      .then(purpleify)
       .catch(reportError);
     }
     else if (e.target.classList.contains("reset")) {
@@ -88,7 +100,7 @@ command: "reset",
 function reportExecuteScriptError(error) {
 document.querySelector("#popup-content").classList.add("hidden");
 document.querySelector("#error-content").classList.remove("hidden");
-console.error(`Failed to execute beastify content script: ${error.message}`);
+console.error(`Failed to execute themify content script: ${error.message}`);
 }
 
 /**
@@ -96,6 +108,6 @@ console.error(`Failed to execute beastify content script: ${error.message}`);
 * and add a click handler.
 * If we couldn't inject the script, handle the error.
 */
-browser.tabs.executeScript({file: "/content_scripts/beastify.js"})
+browser.tabs.executeScript({file: "/content_scripts/themify.js"})
 .then(listenForClicks)
 .catch(reportExecuteScriptError);
