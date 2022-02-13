@@ -15,4 +15,4 @@ It is a very simple and easy to use add-on and provides a good foundation for be
 * Check out the codebase under the directories "popup" and "content_scripts"
 
 
-
+Please refer to the Code of Conduct and the Contributing document to learn how to contribute to this project!
