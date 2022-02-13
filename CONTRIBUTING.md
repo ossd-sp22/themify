@@ -15,4 +15,4 @@ If editing an existing file, code style should match that which already exists w
 Please not that all contributions and use of this project must adhere to the [GNU General Public License v3.0](https://github.com/ossd-sp22/themify/blob/main/LICENSE)
 
 ## Getting Help
-If you need help of any kind or want to contact community leaders, please send emails [here](mailto:jlb981@nyu.edu)
+If you need help of any kind or want to contact community leaders, please send emails <a href="mailto:jlb981@nyu.edu" target='_blank'>here</a>
