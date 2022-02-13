@@ -16,6 +16,9 @@
      */
     function changeTheme(color) {
       document.body.style.border = "5px solid " + color;
+      documnt.body.style.scrollbarBaseColor = "5px solid red"; 
+      documnt.body.style.scrollbarArrowColor = "red"; 
+      documnt.body.style.scrollbarTrackColor = "red"; 
     }
   
     /**
