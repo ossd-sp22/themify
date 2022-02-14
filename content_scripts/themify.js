@@ -16,9 +16,12 @@
      */
     function changeTheme(color) {
       document.body.style.border = "5px solid " + color;
+      /*
       document.style.scrollbarBaseColor = "red";
       document.body.style.scrollbarArrowColor = "red";
       document.body.style.scrollbarTrackColor = "red";
+      Above code to change the color of the scrollbar works but will not show on most browsers
+      */
     }
   
     /**
