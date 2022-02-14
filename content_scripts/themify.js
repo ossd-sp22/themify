@@ -16,7 +16,7 @@
      */
     function changeTheme(color) {
       document.body.style.border = "5px solid " + color;
-      document.body.style.scrollbarBaseColor = "red";
+      document.style.scrollbarBaseColor = "red";
       document.body.style.scrollbarArrowColor = "red";
       document.body.style.scrollbarTrackColor = "red";
     }
