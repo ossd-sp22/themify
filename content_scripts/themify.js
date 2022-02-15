@@ -33,6 +33,12 @@
       document.body.style.border = "5px solid " + color;
       backgroundC = getBackgroundColor(color)
       document.body.style.backgroundColor = "" + backgroundC;
+      /*
+      document.style.scrollbarBaseColor = "red";
+      document.body.style.scrollbarArrowColor = "red";
+      document.body.style.scrollbarTrackColor = "red";
+      Above code to change the color of the scrollbar works but will not show on most browsers
+      */
     }
   
     /**
