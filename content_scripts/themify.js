@@ -8,7 +8,22 @@
       return;
     }
     window.hasRun = true;
-  
+    
+    function getBackgroundColor(name) {
+      if (name === 'red') {
+        return 'MistyRose'
+      }
+      else if (name === 'green') {
+        return 'LightGreen'
+      }
+      else if (name === 'purple') {
+        return 'DarkOrchid'
+      }
+      else {
+        return 'LightCyan'
+      }
+    }
+
     /**
      * Change the theme of the document to be colored with the
      * color passed by the message corresponding to the color
@@ -16,9 +31,8 @@
      */
     function changeTheme(color) {
       document.body.style.border = "5px solid " + color;
-      document.body.style.scrollbarBaseColor = "red";
-      document.body.style.scrollbarArrowColor = "red";
-      document.body.style.scrollbarTrackColor = "red";
+      backgroundC = getBackgroundColor(color)
+      document.body.style.backgroundColor = "" + backgroundC;
     }
   
     /**
@@ -26,6 +40,7 @@
      */
     function resetTheme() {
       document.body.style.border = "0px solid red";
+      document.body.style.backgroundColor = "white";
     }
   
     /**
