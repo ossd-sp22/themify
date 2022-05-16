@@ -3,125 +3,107 @@
  * except for elements that have the "beastify-image" class.
  */
  const hidePage = `body > :not(.beastify-image) {
-    display: none;
-  }`;
+  display: none;
+}`;
 
 /**
 * Listen for clicks on the buttons, and send the appropriate message to
 * the content script in the page.
 */
 function listenForClicks() {
-  document.addEventListener("click", (e) => {
-    var red = document.querySelector('.themeRed');
-    var blue = document.querySelector('.themeBlue');
-    var green = document.querySelector('.themeGreen');
-    var purple = document.querySelector('.themePurple');
 
-    /**
-    * send a "themify" message to the content script in the
-    * active tab with the relevent color.
-    */
-    function redify(tabs) {
-      blue.classList.remove('border');
-      red.classList.add('border');
-      purple.classList.remove('border');
-      green.classList.remove("border");
+document.addEventListener("click", (e) => {
 
-
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "themify",
-        color: 'red',
-        border: 'solid 100px red'
-      });
-    }
-
-    function greenify(tabs) {
-      blue.classList.remove('border');
-      red.classList.remove('border');
-      purple.classList.remove('border');
-      green.classList.add("border");
-
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "themify",
-        color: 'green'
-      });
-    }
-
-    function blueify(tabs) {
-      blue.classList.add('border');
-      red.classList.remove('border');
-      purple.classList.remove('border');
-      green.classList.remove("border");
-
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "themify",
-        color: 'blue'
-      });
-    }
-
-    function purpleify(tabs) {
-      blue.classList.remove('border');
-      red.classList.remove('border');
-      purple.classList.add('border');
-      green.classList.remove("border");
-
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "themify",
-        color: 'purple'
-      });
-    }
-
-    /**
-    * send a "reset" message to the content script in the active tab.
-    */
-    function reset(tabs) {
-      blue.classList.remove('border');
-      red.classList.remove('border');
-      purple.classList.remove('border');
-      green.classList.remove("border");
-
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "reset",
-      });
-    }
-
-    /**
-    * Just log the error to the console.
-    */
-    function reportError(error) {
-      console.error(`Could not themify: ${error}`);
-    }
-
-    /**
-    * Get the active tab,
-    * then call relevent "[color]ify()" or "reset()" as appropriate.
-    */
-    if (e.target.classList.contains("themeRed")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(redify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themeGreen")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(greenify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themeBlue")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(blueify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themePurple")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(purpleify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("reset")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(reset)
-      .catch(reportError);
-    }
+/**
+* send a "themify" message to the content script in the
+* active tab with the relevent color.
+*/
+function redify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'red'
   });
+}
+
+function greenify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'green'
+  });
+}
+
+function blueify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'blue'
+  });
+}
+
+function purpleify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'purple'
+  });
+}
+
+function widify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "WIDER",
+    color: 'yellow'
+  })
+}
+
+  /**
+  * send a "reset" message to the content script in the active tab.
+  */
+  function reset(tabs) {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "reset",
+    });
+  }
+
+  /**
+  * Just log the error to the console.
+  */
+  function reportError(error) {
+    console.error(`Could not themify: ${error}`);
+  }
+
+  /**
+  * Get the active tab,
+  * then call relevent "[color]ify()" or "reset()" as appropriate.
+  */
+  if (e.target.classList.contains("themeRed")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(redify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("themeGreen")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(greenify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("themeBlue")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(blueify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("themePurple")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(purpleify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("widify")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(widify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("reset")) {
+  browser.tabs.query({active: true, currentWindow: true})
+  .then(reset)
+  .catch(reportError);
+  }
+});
 }
 
 /**

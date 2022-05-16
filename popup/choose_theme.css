@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100px;
 }
 
@@ -32,6 +33,14 @@ html, body {
 
 .themeGreen {
   background-color: #5bcf2580;
+}
+
+.widify:hover {
+  background-color: yellowgreen;
+}
+
+.widify {
+  background-color: yellow;
 }
 
 .themeBlue:hover {
