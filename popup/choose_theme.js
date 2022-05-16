@@ -3,94 +3,106 @@
  * except for elements that have the "beastify-image" class.
  */
  const hidePage = `body > :not(.beastify-image) {
-    display: none;
-  }`;
+  display: none;
+}`;
 
 /**
 * Listen for clicks on the buttons, and send the appropriate message to
 * the content script in the page.
 */
 function listenForClicks() {
-  document.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
+
+/**
+* send a "themify" message to the content script in the
+* active tab with the relevent color.
+*/
+function redify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'red'
+  });
+}
+
+function greenify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'green'
+  });
+}
+
+function blueify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'blue'
+  });
+}
+
+function purpleify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "themify",
+    color: 'purple'
+  });
+}
+
+function widify(tabs) {
+  browser.tabs.sendMessage(tabs[0].id, {
+    command: "WIDER",
+    color: 'yellow'
+  })
+}
 
   /**
-  * send a "themify" message to the content script in the
-  * active tab with the relevent color.
+  * send a "reset" message to the content script in the active tab.
   */
-  function redify(tabs) {
+  function reset(tabs) {
     browser.tabs.sendMessage(tabs[0].id, {
-      command: "themify",
-      color: 'red'
+      command: "reset",
     });
   }
 
-  function greenify(tabs) {
-    browser.tabs.sendMessage(tabs[0].id, {
-      command: "themify",
-      color: 'green'
-    });
+  /**
+  * Just log the error to the console.
+  */
+  function reportError(error) {
+    console.error(`Could not themify: ${error}`);
   }
 
-  function blueify(tabs) {
-    browser.tabs.sendMessage(tabs[0].id, {
-      command: "themify",
-      color: 'blue'
-    });
-  }
-
-  function purpleify(tabs) {
-    browser.tabs.sendMessage(tabs[0].id, {
-      command: "themify",
-      color: 'purple'
-    });
-  }
-
-    /**
-    * send a "reset" message to the content script in the active tab.
-    */
-    function reset(tabs) {
-      browser.tabs.sendMessage(tabs[0].id, {
-        command: "reset",
-      });
-    }
-
-    /**
-    * Just log the error to the console.
-    */
-    function reportError(error) {
-      console.error(`Could not themify: ${error}`);
-    }
-
-    /**
-    * Get the active tab,
-    * then call relevent "[color]ify()" or "reset()" as appropriate.
-    */
-    if (e.target.classList.contains("themeRed")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(redify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themeGreen")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(greenify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themeBlue")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(blueify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("themePurple")) {
-      browser.tabs.query({active: true, currentWindow: true})
-      .then(purpleify)
-      .catch(reportError);
-    }
-    else if (e.target.classList.contains("reset")) {
+  /**
+  * Get the active tab,
+  * then call relevent "[color]ify()" or "reset()" as appropriate.
+  */
+  if (e.target.classList.contains("themeRed")) {
     browser.tabs.query({active: true, currentWindow: true})
-    .then(reset)
+    .then(redify)
     .catch(reportError);
-    }
-  });
+  }
+  else if (e.target.classList.contains("themeGreen")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(greenify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("themeBlue")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(blueify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("themePurple")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(purpleify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("widify")) {
+    browser.tabs.query({active: true, currentWindow: true})
+    .then(widify)
+    .catch(reportError);
+  }
+  else if (e.target.classList.contains("reset")) {
+  browser.tabs.query({active: true, currentWindow: true})
+  .then(reset)
+  .catch(reportError);
+  }
+});
 }
 
 /**
