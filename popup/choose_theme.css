@@ -23,6 +23,10 @@ body {
   background-color: #df1f1885;
 }
 
+.border{
+  border: solid 3px black;
+}
+
 .themeGreen:hover {
   background-color: #5bcf25;
 }
@@ -43,8 +47,11 @@ body {
   background-color: #2d47d4;
 }
 
-.themeBlue {
+/*.themeBlue {
   background-color: #2d46d480;
+}*/
+.themeBlue{
+  background-color: blue;
 }
 
 .themePurple:hover {
